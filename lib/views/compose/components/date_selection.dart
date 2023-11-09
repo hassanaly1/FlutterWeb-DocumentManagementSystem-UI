@@ -4,16 +4,16 @@ import 'package:document_management_web/widgets/custom_texxtfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DueDateAndRemindersScreen extends StatefulWidget {
-  const DueDateAndRemindersScreen({super.key});
+class DueDateAndRemindersForm extends StatefulWidget {
+  const DueDateAndRemindersForm({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _DueDateAndRemindersScreenState createState() =>
-      _DueDateAndRemindersScreenState();
+  _DueDateAndRemindersFormState createState() =>
+      _DueDateAndRemindersFormState();
 }
 
-class _DueDateAndRemindersScreenState extends State<DueDateAndRemindersScreen> {
+class _DueDateAndRemindersFormState extends State<DueDateAndRemindersForm> {
   DateTime? selectedDueDate;
   List<DateTime> selectedReminderDates = [];
 

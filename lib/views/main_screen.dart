@@ -1,9 +1,7 @@
 import 'package:document_management_web/utilities/constants.dart';
-import 'package:document_management_web/views/archieve/archeive_screen.dart';
-import 'package:document_management_web/views/completed/completed_screen.dart';
 import 'package:document_management_web/views/compose/compose_screen.dart';
 import 'package:document_management_web/views/dashboard/dashboard_screen.dart';
-import 'package:document_management_web/views/recieved/recieved_screen.dart';
+import 'package:document_management_web/views/document/document_screen.dart';
 import 'package:document_management_web/views/settings/settings_screen.dart';
 import 'package:document_management_web/views/templates/templates_screen.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
@@ -129,44 +127,32 @@ class _MainScreenState extends State<MainScreen> {
                 icon: const Icon(Icons.description),
               ),
               SideMenuItem(
-                title: 'Recieved',
+                title: 'Documents',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
                 },
                 icon: const Icon(Icons.file_copy_rounded),
-                trailing: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6.0, vertical: 3),
-                      child: Text(
-                        'New',
-                        style: TextStyle(fontSize: 11, color: Colors.grey[800]),
-                      ),
-                    )),
               ),
-              SideMenuItem(
-                title: 'Completed',
-                onTap: (index, _) {
-                  sideMenu.changePage(index);
-                },
-                icon: const Icon(Icons.download_done_outlined),
-              ),
+              // SideMenuItem(
+              //   title: 'Pending',
+              //   onTap: (index, _) {
+              //     sideMenu.changePage(index);
+              //   },
+              //   icon: const Icon(Icons.pending),
+              // ),
+              // SideMenuItem(
+              //   title: 'Completed',
+              //   onTap: (index, _) {
+              //     sideMenu.changePage(index);
+              //   },
+              //   icon: const Icon(Icons.download_done_outlined),
+              // ),
               SideMenuItem(
                 title: 'Templates',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
                 },
                 icon: const Icon(Icons.edit_document),
-              ),
-              SideMenuItem(
-                title: 'Archives',
-                onTap: (index, _) {
-                  sideMenu.changePage(index);
-                },
-                icon: const Icon(Icons.bookmark_outlined),
               ),
               SideMenuItem(
                 title: 'Settings',
@@ -185,14 +171,14 @@ class _MainScreenState extends State<MainScreen> {
           Expanded(
             child: PageView(
               controller: pageController,
-              children: [
-                const DashboardScreen(),
-                const ComposeScreen(),
-                const RecievedScreen(),
-                const CompletedScreen(),
+              children: const [
+                DashboardScreen(),
+                ComposeScreen(),
+                DocumentScreen(),
+                // PendingScreen(),
+                // CompletedScreen(),
                 TemplateScreen(),
-                const ArcheiveScreen(),
-                const SettingScreen(),
+                SettingScreen(),
               ],
             ),
           ),

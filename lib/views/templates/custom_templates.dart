@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomTemplates extends StatefulWidget {
-  const CustomTemplates({super.key});
+  final String title;
+  const CustomTemplates({super.key, required this.title});
 
   @override
   State<CustomTemplates> createState() => _CustomTemplatesState();
@@ -34,7 +35,11 @@ class _CustomTemplatesState extends State<CustomTemplates> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: CustomTextWidget(
+            text: widget.title, fSize: 20, fWeight: FontWeight.w600),
+        centerTitle: true,
+      ),
       body: Container(
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.75),
@@ -63,26 +68,40 @@ class _CustomTemplatesState extends State<CustomTemplates> {
                             itemBuilder: (context, index) {
                               final document = documentsData[index];
                               return Card(
-                                color: Colors.white,
-                                child: ListTile(
-                                  leading: CustomTextWidget(
-                                    text: '\u2022',
-                                    fWeight: FontWeight.bold,
-                                  ),
-                                  title:
-                                      CustomTextWidget(text: document["name"]),
-                                  subtitle: CustomTextWidget(
-                                    text: document["type"],
-                                    fSize: 12,
-                                  ),
-                                  trailing: CustomButton(
-                                    width: context.width * 0.1,
-                                    buttonText: 'Remove',
-                                    buttonColor: Colors.red,
-                                    onTap: () {},
-                                  ),
-                                ),
-                              );
+                                  color: Colors.white,
+                                  child: ExpansionTile(
+                                    title: ListTile(
+                                      leading: CustomTextWidget(
+                                        text: '\u2022',
+                                        fWeight: FontWeight.bold,
+                                      ),
+                                      title: CustomTextWidget(
+                                          text: document["name"]),
+                                      subtitle: CustomTextWidget(
+                                        text: document["type"],
+                                        fSize: 12,
+                                      ),
+                                    ),
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          CustomButton(
+                                            width: context.width * 0.1,
+                                            buttonText: 'Edit',
+                                            onTap: () {},
+                                          ),
+                                          CustomButton(
+                                            width: context.width * 0.1,
+                                            buttonText: 'Remove',
+                                            buttonColor: Colors.red,
+                                            onTap: () {},
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ));
                             },
                           ),
                         ],
@@ -108,47 +127,61 @@ class _CustomTemplatesState extends State<CustomTemplates> {
                             itemBuilder: (context, index) {
                               final questionnaire = questionnairesData[index];
                               return Card(
-                                color: Colors.white,
-                                child: ListTile(
-                                  leading: CustomTextWidget(
-                                    text: '\u2022',
-                                    fWeight: FontWeight.bold,
-                                  ),
-                                  title: CustomTextWidget(
-                                      text: questionnaire["question"]),
-                                  subtitle: SizedBox(
-                                    height: 50, // Set a suitable height
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          questionnaire["options"].length,
-                                      itemBuilder: (context, index) {
-                                        final option =
-                                            questionnaire["options"][index];
-                                        return Row(
-                                          children: [
-                                            const SizedBox(width: 5),
-                                            const Icon(
-                                                Icons.arrow_right_rounded),
-                                            const SizedBox(width: 10),
-                                            CustomTextWidget(
-                                              text: option,
-                                              fSize: 12,
-                                            ),
-                                          ],
-                                        );
-                                      },
+                                  color: Colors.white,
+                                  child: ExpansionTile(
+                                    title: ListTile(
+                                      leading: CustomTextWidget(
+                                        text: '\u2022',
+                                        fWeight: FontWeight.bold,
+                                      ),
+                                      title: CustomTextWidget(
+                                          text: questionnaire["question"]),
+                                      subtitle: SizedBox(
+                                        height: 50, // Set a suitable height
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemCount:
+                                              questionnaire["options"].length,
+                                          itemBuilder: (context, index) {
+                                            final option =
+                                                questionnaire["options"][index];
+                                            return Row(
+                                              children: [
+                                                const SizedBox(width: 5),
+                                                const Icon(
+                                                    Icons.arrow_right_rounded),
+                                                const SizedBox(width: 10),
+                                                CustomTextWidget(
+                                                  text: option,
+                                                  fSize: 12,
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  trailing: CustomButton(
-                                    width: context.width * 0.1,
-                                    buttonText: 'Remove',
-                                    buttonColor: Colors.red,
-                                    onTap: () {},
-                                  ),
-                                ),
-                              );
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          CustomButton(
+                                            width: context.width * 0.1,
+                                            buttonText: 'Edit',
+                                            onTap: () {},
+                                          ),
+                                          CustomButton(
+                                            width: context.width * 0.1,
+                                            buttonText: 'Remove',
+                                            buttonColor: Colors.red,
+                                            onTap: () {},
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ));
                             },
                           ),
                         ],

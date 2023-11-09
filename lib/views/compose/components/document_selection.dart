@@ -4,14 +4,14 @@ import 'package:document_management_web/widgets/custom_texxtfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Step2Content extends StatefulWidget {
-  const Step2Content({super.key});
+class DocumentForm extends StatefulWidget {
+  const DocumentForm({super.key});
 
   @override
-  _Step2ContentState createState() => _Step2ContentState();
+  _DocumentFormState createState() => _DocumentFormState();
 }
 
-class _Step2ContentState extends State<Step2Content> {
+class _DocumentFormState extends State<DocumentForm> {
   List<Map<String, String>> documentList = [];
   List<TextEditingController> nameControllers = [];
   List<TextEditingController> typeControllers = [];
@@ -50,7 +50,7 @@ class _Step2ContentState extends State<Step2Content> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

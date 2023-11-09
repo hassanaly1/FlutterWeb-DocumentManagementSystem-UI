@@ -3,16 +3,16 @@ import 'package:document_management_web/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Step5Content extends StatefulWidget {
-  const Step5Content({
+class ReviewScreen extends StatefulWidget {
+  const ReviewScreen({
     super.key,
   });
 
   @override
-  State<Step5Content> createState() => _Step5ContentState();
+  State<ReviewScreen> createState() => _ReviewScreenState();
 }
 
-class _Step5ContentState extends State<Step5Content> {
+class _ReviewScreenState extends State<ReviewScreen> {
   double containerHeight = 100.0;
 
   void toggleContainerHeight() {
@@ -213,36 +213,38 @@ class _Step5ContentState extends State<Step5Content> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                padding: const EdgeInsets.all(12.0),
-                width: context.width * 0.8,
-                height: context.height * 0.2,
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'Due Date',
-                      fSize: 20,
-                      fWeight: FontWeight.w700,
-                    ),
-                    CustomTextWidget(
-                      text: '17-11-2023',
-                      fSize: 14,
-                      fWeight: FontWeight.w300,
-                    ),
-                    const Divider(),
-                    CustomTextWidget(
-                      text: 'Reminders',
-                      fSize: 20,
-                      fWeight: FontWeight.w700,
-                    ),
-                    CustomTextWidget(
-                      text: '18-11-2023',
-                      fSize: 14,
-                      fWeight: FontWeight.w300,
-                    ),
-                  ],
+              child: Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(12.0),
+                  // width: context.width * 0.8,
+                  // height: context.height * 0.3,
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextWidget(
+                        text: 'Due Date',
+                        fSize: 20,
+                        fWeight: FontWeight.w700,
+                      ),
+                      CustomTextWidget(
+                        text: '17-11-2023',
+                        fSize: 14,
+                        fWeight: FontWeight.w300,
+                      ),
+                      const Divider(),
+                      CustomTextWidget(
+                        text: 'Reminders',
+                        fSize: 20,
+                        fWeight: FontWeight.w700,
+                      ),
+                      CustomTextWidget(
+                        text: '18-11-2023',
+                        fSize: 14,
+                        fWeight: FontWeight.w300,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )
