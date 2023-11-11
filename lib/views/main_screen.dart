@@ -1,8 +1,10 @@
 import 'package:document_management_web/utilities/constants.dart';
+import 'package:document_management_web/views/auth/login_screen.dart';
+import 'package:document_management_web/views/client/client_screen.dart';
 import 'package:document_management_web/views/compose/compose_screen.dart';
 import 'package:document_management_web/views/dashboard/dashboard_screen.dart';
 import 'package:document_management_web/views/document/document_screen.dart';
-import 'package:document_management_web/views/settings/settings_screen.dart';
+import 'package:document_management_web/views/settings/settings.dart';
 import 'package:document_management_web/views/templates/templates_screen.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +38,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: AppAssets.primaryColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 80,
         forceMaterialTransparency: true,
         title: Image.asset(
@@ -72,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
             collapseWidth: 100,
             controller: sideMenu,
             style: SideMenuStyle(
-              openSideMenuWidth: 210,
+              openSideMenuWidth: 230,
               itemBorderRadius: BorderRadius.circular(12.0),
               toggleColor: Colors.white,
               itemOuterPadding:
@@ -155,6 +158,13 @@ class _MainScreenState extends State<MainScreen> {
                 icon: const Icon(Icons.edit_document),
               ),
               SideMenuItem(
+                title: 'Client',
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
+                icon: const Icon(Icons.person_2),
+              ),
+              SideMenuItem(
                 title: 'Settings',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
@@ -163,7 +173,9 @@ class _MainScreenState extends State<MainScreen> {
               ),
               SideMenuItem(
                 title: 'Logout',
-                onTap: (index, _) {},
+                onTap: (index, _) {
+                  Get.to(const LoginScreen(), transition: Transition.fadeIn);
+                },
                 icon: const Icon(Icons.logout),
               ),
             ],
@@ -175,10 +187,9 @@ class _MainScreenState extends State<MainScreen> {
                 DashboardScreen(),
                 ComposeScreen(),
                 DocumentScreen(),
-                // PendingScreen(),
-                // CompletedScreen(),
                 TemplateScreen(),
-                SettingScreen(),
+                ClientScreen(),
+                Settings(),
               ],
             ),
           ),

@@ -42,7 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.75),
@@ -52,7 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Wrap(
-                    spacing: 15.0,
+                    spacing: 10.0,
                     children: [
                       PieChart(),
                       _buildStackedLine100Chart(),

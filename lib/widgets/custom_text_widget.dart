@@ -32,4 +32,6 @@ class CustomTextWidget extends StatelessWidget {
       ),
     );
   }
+
+  animate({required Function(dynamic controller) onPlay}) {}
 }
