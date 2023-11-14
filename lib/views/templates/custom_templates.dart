@@ -57,10 +57,19 @@ class _CustomTemplatesState extends State<CustomTemplates> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomTextWidget(
-                            text: 'Documents',
-                            fSize: 20,
-                            fWeight: FontWeight.w700,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomTextWidget(
+                                text: 'Documents',
+                                fSize: 20,
+                                fWeight: FontWeight.w700,
+                              ),
+                              CustomButton(
+                                buttonText: 'Use Template',
+                                onTap: () {},
+                              )
+                            ],
                           ),
                           ListView.builder(
                             shrinkWrap: true,

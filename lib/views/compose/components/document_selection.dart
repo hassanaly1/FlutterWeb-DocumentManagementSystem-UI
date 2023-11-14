@@ -1,6 +1,7 @@
 import 'package:document_management_web/widgets/custom_button.dart';
 import 'package:document_management_web/widgets/custom_text_widget.dart';
 import 'package:document_management_web/widgets/custom_texxtfield.dart';
+import 'package:document_management_web/widgets/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +44,8 @@ class _DocumentFormState extends State<DocumentForm> {
           child: documentList.isEmpty
               ? Center(
                   child: CustomTextWidget(
-                      text: 'Click on Add button to get started.'))
+                      text: 'Click on Add button to get started.'),
+                )
               : ListView.builder(
                   shrinkWrap: true,
                   itemCount: documentList.length,
@@ -72,11 +74,12 @@ class _DocumentFormState extends State<DocumentForm> {
                               children: [
                                 CustomTextWidget(text: 'Document Type'),
                                 const SizedBox(height: 5),
-                                CustomTextField(
-                                  fillColor: Colors.white,
-                                  controller: typeControllers[index],
-                                  hintText: 'Document Type (.doc, .pdf...)',
-                                ),
+                                const CustomDropDown(dropDownText: '.pdf'),
+                                // CustomTextField(
+                                //   fillColor: Colors.white,
+                                //   controller: typeControllers[index],
+                                //   hintText: 'Document Type (.doc, .pdf...)',
+                                // ),
                               ],
                             ),
                           ],

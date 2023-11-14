@@ -1,5 +1,5 @@
 import 'package:document_management_web/utilities/constants.dart';
-import 'package:document_management_web/views/auth/signup_screen.dart';
+import 'package:document_management_web/views/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppAssets.primaryColor),
         useMaterial3: true,
       ),
-      home: const SignupScreen(),
+      home: const LoginScreen(),
     );
   }
 }

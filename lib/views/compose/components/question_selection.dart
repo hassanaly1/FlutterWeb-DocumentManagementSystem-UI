@@ -1,4 +1,5 @@
 import 'package:document_management_web/widgets/custom_button.dart';
+import 'package:document_management_web/widgets/custom_text_widget.dart';
 import 'package:document_management_web/widgets/custom_texxtfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,45 +29,67 @@ class _QuestionnaireFormState extends State<QuestionnaireForm> {
         child: Column(
           children: [
             // Question Input
-            CustomTextField(
-              fillColor: Colors.white,
-              hintText: 'Enter Question',
-              controller: questionTextController,
-            ),
-            // TextFormField(
-            //   controller: questionTextController,
-            //   decoration: const InputDecoration(labelText: 'Question Text'),
-            //   onChanged: (value) {
-            //     questions.last.text = value;
-            //   },
-            // ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextField(
+                    fillColor: Colors.white,
+                    hintText: 'Enter Question',
+                    controller: questionTextController,
+                  ),
+                  // TextFormField(
+                  //   controller: questionTextController,
+                  //   decoration: const InputDecoration(labelText: 'Question Text'),
+                  //   onChanged: (value) {
+                  //     questions.last.text = value;
+                  //   },
+                  // ),
 
-            // Answer Type Dropdown
-            DropdownButton<String>(
-              dropdownColor: Colors.grey.shade300,
-              focusColor: Colors.white,
-              borderRadius: BorderRadius.circular(12.0),
-              elevation: 10,
-              value: selectedAnswerType,
-              items: ['Checkbox', 'Yes/No', 'Radio Button', 'Text Field']
-                  .map((type) {
-                return DropdownMenuItem<String>(
-                  value: type,
-                  child: Text(type),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedAnswerType = value!;
-                });
-              },
+                  // Answer Type Dropdown
+                  Container(
+                    height: 50.0,
+                    width: context.width * 0.2,
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    color: Colors.white,
+                    child: Center(
+                      child: DropdownButton<String>(
+                        alignment: Alignment.center,
+                        dropdownColor: Colors.white,
+                        focusColor: Colors.white,
+                        borderRadius: BorderRadius.circular(12.0),
+                        //elevation: 10,
+                        value: selectedAnswerType,
+                        items: [
+                          'Checkbox',
+                          'Yes/No',
+                          'Radio Button',
+                          'Text Field'
+                        ].map((type) {
+                          return DropdownMenuItem<String>(
+                            value: type,
+                            child: CustomTextWidget(text: type),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedAnswerType = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             // Answer Options (for Checkbox and Radio Button)
             if (selectedAnswerType == 'Checkbox' ||
                 selectedAnswerType == 'Radio Button')
               Column(
                 children: [
-                  const Text('Answer Options'),
+                  CustomTextWidget(text: 'Answer Options'),
                   ListView.builder(
                     shrinkWrap: true,
                     itemCount: answerOptions.length,
@@ -129,29 +152,36 @@ class _QuestionnaireFormState extends State<QuestionnaireForm> {
                   hintText: 'Enter Text Limit', fillColor: Colors.white),
 
             // Add More Question Button
-            CustomButton(
-              width: context.width * 0.1,
-              buttonText: 'Add Question',
-              onTap: () {
-                setState(() {
-                  questions.add(Question(
-                    text: '',
-                    answerType: selectedAnswerType,
-                    answerOptions: answerOptions,
-                  ));
-                  // Clear input fields
-                  questionTextController.clear();
-                  answerOptions = [];
-                });
-              },
-            ),
-            // Submit Button
-            CustomButton(
-              width: context.width * 0.1,
-              buttonText: 'Submit',
-              onTap: () {
-                navigateToNextScreen(questions);
-              },
+            const Divider(),
+            const SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                  width: context.width * 0.1,
+                  buttonText: 'Add Question',
+                  onTap: () {
+                    setState(() {
+                      questions.add(Question(
+                        text: '',
+                        answerType: selectedAnswerType,
+                        answerOptions: answerOptions,
+                      ));
+                      // Clear input fields
+                      questionTextController.clear();
+                      answerOptions = [];
+                    });
+                  },
+                ),
+                // Submit Button
+                CustomButton(
+                  width: context.width * 0.1,
+                  buttonText: 'Submit',
+                  onTap: () {
+                    navigateToNextScreen(questions);
+                  },
+                ),
+              ],
             )
           ],
         ),

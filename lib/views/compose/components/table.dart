@@ -1,3 +1,4 @@
+import 'package:document_management_web/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class TableData extends StatefulWidget {
@@ -86,19 +87,6 @@ class _TableDataState extends State<TableData> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            DataColumn(
-              label: Checkbox(
-                value: selectAll,
-                onChanged: (value) {
-                  setState(() {
-                    selectAll = value!;
-                    for (var data in rowData) {
-                      data.selected = value;
-                    }
-                  });
-                },
-              ),
-            ),
             const DataColumn(
               label: Text(
                 'Name',
@@ -113,8 +101,22 @@ class _TableDataState extends State<TableData> {
             ),
             const DataColumn(
               label: Text(
-                'Date',
+                'Number',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            DataColumn(
+              label: Checkbox(
+                activeColor: AppAssets.primaryColor,
+                value: selectAll,
+                onChanged: (value) {
+                  setState(() {
+                    selectAll = value!;
+                    for (var data in rowData) {
+                      data.selected = value;
+                    }
+                  });
+                },
               ),
             ),
           ],
@@ -131,8 +133,13 @@ class _TableDataState extends State<TableData> {
                   DataCell(
                     Text((index + 1).toString()),
                   ), // S.No column
+
+                  DataCell(Text(rowData[index].name)),
+                  DataCell(Text(rowData[index].email)),
+                  DataCell(Text(rowData[index].number)),
                   DataCell(
                     Checkbox(
+                      activeColor: AppAssets.primaryColor,
                       value: rowData[index].selected,
                       onChanged: (value) {
                         setState(() {
@@ -141,9 +148,6 @@ class _TableDataState extends State<TableData> {
                       },
                     ),
                   ),
-                  DataCell(Text(rowData[index].name)),
-                  DataCell(Text(rowData[index].email)),
-                  DataCell(Text(rowData[index].number)),
                   // DataCell(
                   //   GestureDetector(
                   //     onTap: () {

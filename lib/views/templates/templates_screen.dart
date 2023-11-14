@@ -116,100 +116,103 @@ class _TemplateScreenState extends State<TemplateScreen> {
         // }
 
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.75),
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-              ),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.75),
+              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomTextWidget(
-                                  text: 'Templates',
-                                  fSize: 20,
-                                  fWeight: FontWeight.w700,
-                                ),
-                                CustomButton(
-                                  // width: constraints.maxWidth * 0.1,
-                                  buttonText: 'Add Template',
-                                  onTap: () {
-                                    _showDialog();
-                                  },
-                                ),
-                              ],
-                            ),
+                          CustomTextWidget(
+                            text: 'Templates',
+                            fSize: 20,
+                            fWeight: FontWeight.w700,
                           ),
-                          Wrap(
-                            children: templates.map((template) {
-                              return InkWell(
-                                onTap: () {
-                                  Get.to(CustomTemplates(
-                                      title: template['name'] ?? ''));
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    elevation: 5.0,
-                                    child: Container(
-                                      height: 130,
-                                      width: 220,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            CustomTextWidget(
-                                              text: template['name'] ?? '',
-                                              fSize: 18.0,
-                                              fWeight: FontWeight.w600,
-                                              maxLines: 2,
-                                            ),
-                                            CustomTextWidget(
-                                              text:
-                                                  template['description'] ?? '',
-                                              fSize: 12.0,
-                                              fWeight: FontWeight.w300,
-                                              maxLines: 2,
-                                            ),
-                                            CustomTextWidget(
-                                              text:
-                                                  'Last edit: ${template['date']}',
-                                              fSize: 12.0,
-                                              fWeight: FontWeight.w300,
-                                              maxLines: 2,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          )
+                          CustomButton(
+                            // width: constraints.maxWidth * 0.1,
+                            buttonText: 'Add Template',
+                            onTap: () {
+                              _showAddTemplateDialog();
+                            },
+                          ),
                         ],
                       ),
                     ),
+                    Wrap(
+                      children: templates.map((template) {
+                        return InkWell(
+                          onTap: () {
+                            Get.to(
+                                CustomTemplates(title: template['name'] ?? ''));
+                          },
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                color: Colors.grey.shade200,
+                                width: 300,
+                                child: ExpansionTile(
+                                  backgroundColor: Colors.grey.shade50,
+                                  // shape: RoundedRectangleBorder(
+                                  //     borderRadius:
+                                  //         BorderRadius.circular(12.0)),
+                                  title: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        CustomTextWidget(
+                                          text: template['name'] ?? '',
+                                          fSize: 16.0,
+                                          fWeight: FontWeight.w600,
+                                          //  maxLines: 2,
+                                        ),
+                                        CustomTextWidget(
+                                          text: template['description'] ?? '',
+                                          fSize: 12.0,
+                                          fWeight: FontWeight.w300,
+                                          maxLines: 2,
+                                        ),
+                                        CustomTextWidget(
+                                          text:
+                                              'Last edit: ${template['date']}',
+                                          fSize: 12.0,
+                                          fWeight: FontWeight.w300,
+                                          maxLines: 2,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  children: [
+                                    CustomButton(
+                                      buttonText: 'Edit Template',
+                                      onTap: () {
+                                        Get.to(CustomTemplates(
+                                            title: template['name'] ?? ''));
+                                      },
+                                    ),
+                                    CustomButton(
+                                      buttonText: 'Use Template',
+                                      onTap: () {},
+                                    )
+                                  ],
+                                ),
+                              )),
+                        );
+                      }).toList(),
+                    )
                   ],
                 ),
               ),
@@ -220,7 +223,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
     );
   }
 
-  void _showDialog() {
+  void _showAddTemplateDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {

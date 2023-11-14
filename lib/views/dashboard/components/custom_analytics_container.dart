@@ -1,4 +1,3 @@
-import 'package:document_management_web/utilities/constants.dart';
 import 'package:document_management_web/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +43,7 @@ class _CustomAnalyticsContainerState extends State<CustomAnalyticsContainer> {
           width: 300,
           height: 150,
           child: Card(
-            shadowColor: AppAssets.primaryColor,
+            // shadowColor: AppAssets.backgroundColor,
             elevation: isHovered ? 0 : 5.0,
             color: isHovered ? Colors.orange.shade200 : null,
             child: Padding(

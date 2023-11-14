@@ -1,3 +1,4 @@
+import 'package:document_management_web/utilities/constants.dart';
 import 'package:document_management_web/widgets/custom_button.dart';
 import 'package:document_management_web/widgets/custom_text_widget.dart';
 import 'package:document_management_web/widgets/custom_texxtfield.dart';
@@ -49,63 +50,61 @@ class _ClientScreenState extends State<ClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/images/app-logo.png',
-                height: 150,
-              ),
-              CustomTextWidget(
-                  text:
-                      'James has sent you the form, please submit the form before due date.',
-                  fSize: 16.0,
-                  fWeight: FontWeight.w700,
-                  maxLines: 2,
-                  textAlign: TextAlign.center),
-              const SizedBox(height: 15.0),
-              Expanded(
-                child: Container(
-                  width: context.width * 0.5,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 20.0,
-                  ),
-                  color: Colors.white,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemCount: templates.length,
-                    itemBuilder: (context, index) {
-                      final template = templates[index];
-                      return Column(
-                        children: [
-                          Column(
-                            children:
-                                _buildExpansionTiles(template['questions']),
-                          ),
-                          const Divider()
-                        ],
-                      );
-                    },
-                  ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        color: AppAssets.backgroundColor,
+        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/app-logo.png',
+              height: 150,
+            ),
+            CustomTextWidget(
+                text:
+                    'James has sent you the form, please submit the form before due date.',
+                fSize: 16.0,
+                fWeight: FontWeight.w700,
+                maxLines: 2,
+                textAlign: TextAlign.center),
+            const SizedBox(height: 15.0),
+            Expanded(
+              child: Container(
+                width: context.width * 0.5,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 20.0,
+                ),
+                color: Colors.white,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemCount: templates.length,
+                  itemBuilder: (context, index) {
+                    final template = templates[index];
+                    return Column(
+                      children: [
+                        Column(
+                          children: _buildExpansionTiles(template['questions']),
+                        ),
+                        const Divider()
+                      ],
+                    );
+                  },
                 ),
               ),
-              const SizedBox(height: 15.0),
-              CustomButton(
-                width: 200.0,
-                buttonText: 'Submit',
-                onTap: () {},
-              )
-            ],
-          ),
+            ),
+            const SizedBox(height: 15.0),
+            CustomButton(
+              width: 200.0,
+              buttonText: 'Submit',
+              onTap: () {},
+            )
+          ],
         ),
       ),
     );
@@ -143,20 +142,20 @@ class _ClientScreenState extends State<ClientScreen> {
           _buildDocumentWidget(question)
         else
           _buildAnswerWidget(question),
-        CustomButton(
-          width: 200,
-          buttonText: 'Next',
-          onTap: () {
-            setState(() {
-              if (currentQuestionIndex < templates.length - 1) {
-                currentQuestionIndex++;
-              } else {
-                // Reset the index to 0 if we've reached the end of questions
-                currentQuestionIndex = 0;
-              }
-            });
-          },
-        )
+        // CustomButton(
+        //   width: 200,
+        //   buttonText: 'Next',
+        //   onTap: () {
+        //     setState(() {
+        //       if (currentQuestionIndex < templates.length - 1) {
+        //         currentQuestionIndex++;
+        //       } else {
+        //         // Reset the index to 0 if we've reached the end of questions
+        //         currentQuestionIndex = 0;
+        //       }
+        //     });
+        //   },
+        // )
       ],
     );
   }
